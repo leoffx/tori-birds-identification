@@ -1,0 +1,14 @@
+<kor-grid>
+  <!-- image -->
+  <img [src]="shared.uploadedImage" alt="" grid-cols="6" />
+  <!-- suggestions -->
+  <ng-container *ngIf="loading then spinner else suggestions"></ng-container>
+</kor-grid>
+
+<ng-template #spinner>
+  <kor-spinner grid-cols="6" label="Bela foto, xô pensar..."></kor-spinner>
+</ng-template>
+
+<ng-template #suggestions>
+  <kor-card grid-cols="6"></kor-card>
+</ng-template>

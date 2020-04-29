@@ -1,8 +1,6 @@
 <!-- empty state -->
-<kor-empty-state label="Upload an image" icon="photo" *ngIf="!uploadedImage">
+<kor-empty-state label="Faça o upload de uma foto para ser reconhecida." icon="photo">
   <kor-button label="Upload" (click)="uploadOpen()" slot="footer"></kor-button>
 </kor-empty-state>
-<!-- image -->
-<img *ngIf="uploadedImage" [src]="uploadedImage" alt=""/>
 <!-- hidden file input -->
 <input type="file" id="img" accept="image/*" (change)="setUploadedImage($event.target)">

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UploadComponent } from './upload/upload.component';
+import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 
 
 const routes: Routes = [
@@ -12,6 +14,14 @@ const routes: Routes = [
   {
     path: 'upload',
     component: UploadComponent
+  },
+  {
+    path: 'confirmacao',
+    component: ConfirmacaoComponent
+  },
+  {
+    path: 'detalhes',
+    component: DetalhesComponent
   }
 ];
 

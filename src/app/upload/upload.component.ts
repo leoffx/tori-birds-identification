@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SharedService } from '../services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -8,10 +10,10 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class UploadComponent implements OnInit {
 
-  public uploadedImage: SafeUrl;
-
   constructor(
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public shared: SharedService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +25,8 @@ export class UploadComponent implements OnInit {
   }
 
   public setUploadedImage(input): void {
-    this.uploadedImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(input.files[0]));
+    this.shared.uploadedImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(input.files[0]));
+    this.router.navigateByUrl('/confirmacao');
   }
 
 }
