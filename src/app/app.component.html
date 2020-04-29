@@ -2,9 +2,26 @@
   <kor-app-bar slot="top" [label]="title"></kor-app-bar>
   <kor-pane slot="left">
     <kor-stepper orientation="vertical">
-      <kor-stepper-item label="Upload" (click)="router.navigateByUrl('/upload')" [active]="router.url == '/upload'"></kor-stepper-item>
-      <kor-stepper-item label="Confirmaçāo" (click)="router.navigateByUrl('/confirmacao')" [active]="router.url == '/confirmacao'" [disabled]="router.url == '/upload'"></kor-stepper-item>
-      <kor-stepper-item label="Detalhes" (click)="router.navigateByUrl('/detalhes')" [active]="router.url == '/detalhes'" [disabled]="router.url !== '/detalhes'"></kor-stepper-item>
+      <kor-stepper-item 
+        label="Upload"
+        info="Envie uma foto de ave"
+        (click)="router.navigateByUrl('/upload')" 
+        [active]="router.url == '/upload'">
+      </kor-stepper-item>
+      <kor-stepper-item 
+        label="Confirmaçāo" 
+        info="Analise as sugestões de espécies"
+        (click)="router.navigateByUrl('/confirmacao')" 
+        [active]="router.url == '/confirmacao'" 
+        [disabled]="router.url == '/upload'">
+      </kor-stepper-item>
+      <kor-stepper-item 
+        label="Detalhes" 
+        info="Veja detalhes da espécie"
+        (click)="router.navigateByUrl('/detalhes')" 
+        [active]="router.url == '/detalhes'" 
+        [disabled]="router.url !== '/detalhes'">
+      </kor-stepper-item>
     </kor-stepper>
   </kor-pane>
   <router-outlet></router-outlet>
