@@ -20,7 +20,10 @@ export class ConfirmacaoComponent implements AfterViewInit {
     if (img.src.includes('blob')) {
       console.log(img);
       setTimeout(() => {
-        this.model.predict(img).then(res => res.print())
+        this.model.predict(img).then(res => {
+          res.print();
+          this.loading = false;
+        })
       }, 100)
     }
   }
