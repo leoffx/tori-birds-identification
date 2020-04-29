@@ -1,14 +1,21 @@
 <kor-grid>
   <!-- image -->
-  <img [src]="shared.uploadedImage" alt="" grid-cols="6" />
+  <div class="container" grid-cols="6">
+    <kor-text size="header-1">Original</kor-text>
+    <img [src]="shared.uploadedImage" alt="" />
+  </div>
   <!-- suggestions -->
-  <ng-container *ngIf="loading then spinner else suggestions"></ng-container>
+  <div class="container" grid-cols="6">
+    <kor-text size="header-1">Sugestões</kor-text>
+    <kor-card>
+      <ng-container *ngIf="loading then spinner else suggestions"></ng-container>
+    </kor-card>
+  </div>
 </kor-grid>
 
 <ng-template #spinner>
-  <kor-spinner grid-cols="6" label="Bela foto, xô pensar..."></kor-spinner>
+  <kor-spinner label="Bela foto, xô pensar..."></kor-spinner>
 </ng-template>
 
 <ng-template #suggestions>
-  <kor-card grid-cols="6"></kor-card>
 </ng-template>
