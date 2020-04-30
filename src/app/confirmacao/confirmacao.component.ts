@@ -37,7 +37,7 @@ export class ConfirmacaoComponent implements AfterViewInit {
             const speciesId: string = this.birdIds[index];
             // model suggestion data
             const suggestionData = {
-              index: index,
+              index,
               confidence: Math.floor((valuesArray[i] * 100)),
               id: speciesId,
               name: this.birdNames[speciesId],

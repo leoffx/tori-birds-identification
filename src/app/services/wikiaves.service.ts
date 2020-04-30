@@ -6,14 +6,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WikiavesService {
 
-  private baseUri: string = 'https://www.wikiaves.com.br';
+  private baseUri = 'https://www.wikiaves.com.br';
 
   constructor(
     public http: HttpClient
   ) { }
 
   public getImagesOfSpecies(id: string): any {
-    let images: any[] = [];
+    const images: any[] = [];
     this.http.get(`${this.baseUri}/getRegistrosJSON.php?tm=f&t=s&s=${id}&o=mp&p=1`)
       .subscribe((res: any) => {
         Object.values(res.registros.itens).forEach((item: any, i) => {

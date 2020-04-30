@@ -30,12 +30,12 @@ export class UploadComponent implements OnInit {
   }
 
   public setUploadedUrl(input): void {
-    if (input.value.indexOf('http') > -1) {
+    if (input.value && input.value.indexOf('http') > -1) {
       this.shared.uploadedImage = input.value;
+      this.router.navigateByUrl('/confirmacao');
     } else {
-      input.error = true;
+      input.status = 'error';
     }
-    this.router.navigateByUrl('/confirmacao');
   }
 
 }
