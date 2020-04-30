@@ -1,6 +1,12 @@
 <!-- empty state -->
-<kor-empty-state label="Faça o upload de uma foto para ser reconhecida." icon="photo">
-  <kor-button label="Upload" (click)="uploadOpen()" slot="footer"></kor-button>
+<kor-empty-state label="Envie a foto de uma ave para ser analisada." icon="photo">
+  <div class="footer" slot="footer">
+    <kor-input label="URL da foto">
+      <kor-icon button icon="backup" slot="functions" (click)="setUploadedUrl($event.target.parentElement)"></kor-icon>
+    </kor-input>
+    <kor-text>ou</kor-text>
+    <kor-button label="Upload" (click)="uploadOpen()"></kor-button>
+  </div>
 </kor-empty-state>
 <!-- hidden file input -->
 <input type="file" id="img" accept="image/*" (change)="setUploadedImage($event.target)">

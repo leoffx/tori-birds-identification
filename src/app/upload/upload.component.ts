@@ -29,4 +29,13 @@ export class UploadComponent implements OnInit {
     this.router.navigateByUrl('/confirmacao');
   }
 
+  public setUploadedUrl(input): void {
+    if (input.value.indexOf('http') > -1) {
+      this.shared.uploadedImage = input.value;
+    } else {
+      input.error = true;
+    }
+    this.router.navigateByUrl('/confirmacao');
+  }
+
 }

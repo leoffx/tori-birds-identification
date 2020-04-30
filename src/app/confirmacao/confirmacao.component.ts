@@ -26,7 +26,7 @@ export class ConfirmacaoComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const img = document.querySelector('img');
-    if (img.src.includes('blob')) {
+    if (img.src.includes('http')) {
       setTimeout(() => {
         this.tfService.predict(img).then(res => {
           const {values, indices} = tf.topk(res, 10);
@@ -51,7 +51,7 @@ export class ConfirmacaoComponent implements AfterViewInit {
         })
         // TODO: remove log
         .then(() => console.log(this.suggestedSpecies));
-      }, 0);
+      }, 1000);
     }
   }
 
