@@ -1,6 +1,9 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { ModelService } from '../services/model.service';
+
+declare const tf;
+
 @Component({
   selector: 'app-confirmacao',
   templateUrl: './confirmacao.component.html',
@@ -18,10 +21,12 @@ export class ConfirmacaoComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const img = document.querySelector('img');
     if (img.src.includes('blob')) {
-      console.log(img);
       setTimeout(() => {
         this.model.predict(img).then(res => {
-          res.print();
+          const {values, indices} = tf.topk(res, 5);
+          values.print();
+          indices.print();
+          // stop loading
           this.loading = false;
         })
       }, 100)
