@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
 import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
 import { DetalhesComponent } from './detalhes/detalhes.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DetalhesComponent } from './detalhes/detalhes.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

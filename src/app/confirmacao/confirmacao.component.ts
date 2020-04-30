@@ -1,8 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { SharedService } from '../services/shared.service';
 import { TfService } from '../services/model.service';
+import { WikiavesService } from '../services/wikiaves.service';
 
 declare const tf;
+declare const require;
 
 @Component({
   selector: 'app-confirmacao',
@@ -11,12 +13,15 @@ declare const tf;
 })
 export class ConfirmacaoComponent implements AfterViewInit {
 
-  public loading: boolean = true;
+  public loading = true;
   public suggestedSpecies: any[] = [];
+  public birdIds = require('../../assets/tf/birdIdsMap.json');
+  public birdNames = require('../../assets/tf/birdNamesMap.json');
 
   constructor(
     public shared: SharedService,
-    public tfService: TfService
+    private tfService: TfService,
+    private wikiaves: WikiavesService
   ) { }
 
   ngAfterViewInit(): void {
@@ -28,22 +33,25 @@ export class ConfirmacaoComponent implements AfterViewInit {
           const indicesArray = indices.arraySync()[0];
           const valuesArray = values.arraySync()[0];
           // iterate on each of top 10 suggestios
-          indicesArray.forEach((value, index) => {
+          indicesArray.forEach((index, i) => {
+            const speciesId: string = this.birdIds[index];
             // model suggestion data
-            let suggestionData = {
-              "index": value,
-              "confidence": Math.floor(valuesArray[index].toString().slice(0, 4) * 100),
-              "speciesId": null
-            }
+            const suggestionData = {
+              index: index,
+              confidence: Math.floor(valuesArray[i].toString().slice(0, 4) * 100),
+              id: speciesId,
+              name: this.birdNames[speciesId],
+              imgs: this.wikiaves.getImagesOfSpecies(speciesId)
+            };
             // push to suggestions array
-            this.suggestedSpecies.push(suggestionData)
+            this.suggestedSpecies.push(suggestionData);
           });
           // stop loading
           this.loading = false;
         })
         // TODO: remove log
-        .then(() => console.log(this.suggestedSpecies))
-      }, 0)
+        .then(() => console.log(this.suggestedSpecies));
+      }, 0);
     }
   }
 
