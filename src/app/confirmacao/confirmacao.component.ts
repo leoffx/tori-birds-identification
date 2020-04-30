@@ -49,10 +49,12 @@ export class ConfirmacaoComponent implements AfterViewInit {
           // stop loading
           this.loading = false;
         })
-        // TODO: remove log
-        .then(() => console.log(this.suggestedSpecies));
       }, 1000);
     }
+  }
+
+  public openWiki(name): void {
+    window.open(`https://www.wikiaves.com.br/wiki/${name}`)
   }
 
 }
