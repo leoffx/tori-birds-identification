@@ -22,7 +22,6 @@ export class WikiavesService {
           }
         });
       });
-    console.log(images);
     return images;
   }
 }

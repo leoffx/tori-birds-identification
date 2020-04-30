@@ -38,7 +38,7 @@ export class ConfirmacaoComponent implements AfterViewInit {
             // model suggestion data
             const suggestionData = {
               index: index,
-              confidence: Math.floor(valuesArray[i].toString().slice(0, 4) * 100),
+              confidence: Math.floor((valuesArray[i] * 100)),
               id: speciesId,
               name: this.birdNames[speciesId],
               images: this.wikiaves.getImagesOfSpecies(speciesId)

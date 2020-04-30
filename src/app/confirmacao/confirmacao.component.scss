@@ -24,11 +24,15 @@
           margin-top: 8px;
         }
         > kor-text[slot="footer"] {
-          margin: 0;
           flex: 1;
+        }
+        > kor-progress-bar[slot="footer"] {
+          max-width: 96px;
+          margin: 0;
         }
         min-height: fit-content;
         .thumbnails {
+          margin: 0;
           display: flex;
           overflow: auto;
           > img {

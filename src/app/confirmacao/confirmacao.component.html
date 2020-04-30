@@ -25,6 +25,7 @@
         <img *ngFor="let image of species.images" [src]="image" alt=""/>
       </div>
       <!-- footer -->
+      <kor-progress-bar [value]="species?.confidence" slot="footer"></kor-progress-bar>
       <kor-text style="width: auto" slot="footer">{{species?.confidence}}% de confiança</kor-text>
       <kor-button label="Selecionar" slot="footer"></kor-button>
     </kor-card>
