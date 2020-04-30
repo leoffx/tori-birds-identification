@@ -18,7 +18,6 @@ export class WikiavesService {
       .subscribe((res: any) => {
         Object.values(res.registros.itens).forEach((item: any, i) => {
           if (i < 5) {
-            item.link = item.link.replace('#', 'q');
             images.push(item.link.replace('#', 'q'));
           }
         });
