@@ -4,7 +4,7 @@
   .container {
     display: flex;
     flex-direction: column;
-    * + * {
+    > * + * {
       margin-top: 16px;
     }
     img {
@@ -13,6 +13,40 @@
       overflow: hidden;
       object-fit: scale-down;
       background-color: black;
+      border-radius: 4px;
+    }
+    .suggestions {
+      margin-right: -16px;
+      padding-right: 16px;
+      overflow: auto;
+      kor-card {
+        + kor-card {
+          margin-top: 8px;
+        }
+        > kor-text[slot="footer"] {
+          margin: 0;
+          flex: 1;
+        }
+        min-height: fit-content;
+        .thumbnails {
+          display: flex;
+          overflow: auto;
+          > img {
+            height: auto;
+            flex: 1;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: .8;
+            transition: .1s all ease-in-out;
+            &:hover {
+              opacity: 1;
+            }
+          }
+          > * + * {
+            margin-left: 8px;
+          }
+        }
+      }
     }
   }
 }

@@ -7,9 +7,7 @@
   <!-- suggestions -->
   <div class="container" grid-cols="6">
     <kor-text size="header-1">Sugestões</kor-text>
-    <kor-card>
-      <ng-container *ngIf="loading then spinner else suggestions"></ng-container>
-    </kor-card>
+    <ng-container *ngIf="loading then spinner else suggestions"></ng-container>
   </div>
 </kor-grid>
 
@@ -18,4 +16,21 @@
 </ng-template>
 
 <ng-template #suggestions>
+  <div class="suggestions">
+    <kor-card 
+      *ngFor="let species of suggestedSpecies"
+      [label]="species?.index">
+      <!-- thumbnails -->
+      <div class="thumbnails">
+        <img src="https://s3.amazonaws.com/media.wikiaves.com.br/images/6542/2456773q_e939b9ef4639d095da0bb2c8a9444a30.jpg" alt=""/>
+        <img src="https://s3.amazonaws.com/media.wikiaves.com.br/images/6542/2456773q_e939b9ef4639d095da0bb2c8a9444a30.jpg" alt=""/>
+        <img src="https://s3.amazonaws.com/media.wikiaves.com.br/images/6542/2456773q_e939b9ef4639d095da0bb2c8a9444a30.jpg" alt=""/>
+        <img src="https://s3.amazonaws.com/media.wikiaves.com.br/images/6542/2456773q_e939b9ef4639d095da0bb2c8a9444a30.jpg" alt=""/>
+        <img src="https://s3.amazonaws.com/media.wikiaves.com.br/images/6542/2456773q_e939b9ef4639d095da0bb2c8a9444a30.jpg" alt=""/>
+      </div>
+      <!-- footer -->
+      <kor-text style="width: auto" slot="footer">{{species?.confidence}}% de confiança</kor-text>
+      <kor-button label="Selecionar" slot="footer"></kor-button>
+    </kor-card>
+  </div>
 </ng-template>

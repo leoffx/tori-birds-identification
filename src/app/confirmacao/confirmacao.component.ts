@@ -12,7 +12,7 @@ declare const tf;
 export class ConfirmacaoComponent implements AfterViewInit {
 
   public loading: boolean = true;
-  public suggestions: any[] = [];
+  public suggestedSpecies: any[] = [];
 
   constructor(
     public shared: SharedService,
@@ -31,18 +31,18 @@ export class ConfirmacaoComponent implements AfterViewInit {
           indicesArray.forEach((value, index) => {
             // model suggestion data
             let suggestionData = {
-              index: value,
-              confidence: valuesArray[index],
-              speciesId: null
+              "index": value,
+              "confidence": Math.floor(valuesArray[index].toString().slice(0, 4) * 100),
+              "speciesId": null
             }
             // push to suggestions array
-            this.suggestions.push(suggestionData)
+            this.suggestedSpecies.push(suggestionData)
           });
           // stop loading
           this.loading = false;
         })
         // TODO: remove log
-        .then(() => console.log(this.suggestions))
+        .then(() => console.log(this.suggestedSpecies))
       }, 0)
     }
   }
