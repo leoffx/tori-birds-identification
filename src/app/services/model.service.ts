@@ -5,12 +5,12 @@ declare const tf;
 @Injectable({
   providedIn: 'root'
 })
-export class ModelService {
+export class TfService {
 
   public model: any;
 
-  constructor() {
-    const MODEL_URL = "assets/torinet/model.json";
+  init() {
+    const MODEL_URL = "assets/tf/model.json";
     tf.loadGraphModel(MODEL_URL).then(res => this.model = res);
   }
 

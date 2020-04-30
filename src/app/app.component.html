@@ -4,13 +4,15 @@
     <kor-stepper orientation="vertical">
       <kor-stepper-item 
         label="Upload"
-        info="Envie uma foto de ave"
+        info="Envie a foto de uma ave"
+        icon="backup"
         (click)="router.navigateByUrl('/upload')" 
         [active]="router.url == '/upload'">
       </kor-stepper-item>
       <kor-stepper-item 
         label="Confirmaçāo" 
-        info="Analise as sugestões de espécies"
+        icon="check"
+        info="Confirme a espécie sugerida"
         (click)="router.navigateByUrl('/confirmacao')" 
         [active]="router.url == '/confirmacao'" 
         [disabled]="router.url == '/upload'">
@@ -18,6 +20,7 @@
       <kor-stepper-item 
         label="Detalhes" 
         info="Veja detalhes da espécie"
+        icon="assignment"
         (click)="router.navigateByUrl('/detalhes')" 
         [active]="router.url == '/detalhes'" 
         [disabled]="router.url !== '/detalhes'">
