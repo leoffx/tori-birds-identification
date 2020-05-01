@@ -10,7 +10,7 @@ export class TfService {
   public model: any;
 
   init() {
-    const MODEL_URL = 'assets/tf/model.json';
+    const MODEL_URL = 'https://www.kor-ui.com/assets/model.json';
     tf.loadGraphModel(MODEL_URL).then(res => this.model = res);
   }
 
