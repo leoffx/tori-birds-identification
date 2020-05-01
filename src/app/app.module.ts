@@ -5,15 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
 import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
-import { DetalhesComponent } from './detalhes/detalhes.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
-    ConfirmacaoComponent,
-    DetalhesComponent
+    ConfirmacaoComponent
   ],
   imports: [
     BrowserModule,

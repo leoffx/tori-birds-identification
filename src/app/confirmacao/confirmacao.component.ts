@@ -22,35 +22,35 @@ export class ConfirmacaoComponent implements AfterViewInit {
     public shared: SharedService,
     private tfService: TfService,
     private wikiaves: WikiavesService
-  ) { }
+  ) { 
+    setTimeout(() => {shared.appBarLabel = "Sugestōes"}, 0)
+  }
 
   ngAfterViewInit(): void {
     const img = document.querySelector('img');
-    if (img.src.includes('http')) {
-      setTimeout(() => {
-        this.tfService.predict(img).then(res => {
-          const {values, indices} = tf.topk(res, 10);
-          const indicesArray = indices.arraySync()[0];
-          const valuesArray = values.arraySync()[0];
-          // iterate on each of top 10 suggestios
-          indicesArray.forEach((index, i) => {
-            const speciesId: string = this.birdIds[index];
-            // model suggestion data
-            const suggestionData = {
-              index,
-              confidence: Math.floor((valuesArray[i] * 100)),
-              id: speciesId,
-              name: this.birdNames[speciesId],
-              images: this.wikiaves.getImagesOfSpecies(speciesId)
-            };
-            // push to suggestions array
-            this.suggestedSpecies.push(suggestionData);
-          });
-          // stop loading
-          this.loading = false;
-        })
-      }, 1000);
-    }
+    setTimeout(() => {
+      this.tfService.predict(img).then(res => {
+        const {values, indices} = tf.topk(res, 10);
+        const indicesArray = indices.arraySync()[0];
+        const valuesArray = values.arraySync()[0];
+        // iterate on each of top 10 suggestios
+        indicesArray.forEach((index, i) => {
+          const speciesId: string = this.birdIds[index];
+          // model suggestion data
+          const suggestionData = {
+            index,
+            confidence: Math.floor((valuesArray[i] * 100)),
+            id: speciesId,
+            name: this.birdNames[speciesId],
+            images: this.wikiaves.getImagesOfSpecies(speciesId)
+          };
+          // push to suggestions array
+          this.suggestedSpecies.push(suggestionData);
+        });
+        // stop loading
+        this.loading = false;
+      })
+    }, 1000);
   }
 
   public openWiki(name): void {

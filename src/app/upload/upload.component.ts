@@ -10,11 +10,16 @@ import { Router } from '@angular/router';
 })
 export class UploadComponent implements OnInit {
 
+  public showLinkModal: boolean;
+  public photoLink: string;
+
   constructor(
     private sanitizer: DomSanitizer,
     public shared: SharedService,
     public router: Router
-  ) { }
+  ) {
+    setTimeout(() => { shared.appBarLabel = "Tori" }, 0)
+  }
 
   ngOnInit(): void {
   }
@@ -29,13 +34,9 @@ export class UploadComponent implements OnInit {
     this.router.navigateByUrl('/confirmacao');
   }
 
-  public setUploadedUrl(input): void {
-    if (input.value && input.value.indexOf('http') > -1) {
-      this.shared.uploadedImage = input.value;
-      this.router.navigateByUrl('/confirmacao');
-    } else {
-      input.status = 'error';
-    }
+  public setUploadedUrl(url): void {
+    this.shared.uploadedImage = url;
+    this.router.navigateByUrl('/confirmacao');
   }
 
 }

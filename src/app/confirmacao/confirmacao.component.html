@@ -1,15 +1,7 @@
-<kor-grid>
-  <!-- image -->
-  <div class="container" grid-cols="6">
-    <kor-text size="header-1">Original</kor-text>
-    <img [src]="shared.uploadedImage" alt=""/>
-  </div>
-  <!-- suggestions -->
-  <div class="container" grid-cols="6">
-    <kor-text size="header-1">Sugestões</kor-text>
-    <ng-container *ngIf="loading then spinner else suggestions"></ng-container>
-  </div>
-</kor-grid>
+<!-- image -->
+<img [src]="shared.uploadedImage" alt="" />
+<!-- suggestions -->
+<ng-container *ngIf="loading then spinner else suggestions"></ng-container>
 
 <ng-template #spinner>
   <kor-spinner label="Bela foto, xô pensar..."></kor-spinner>
@@ -17,17 +9,15 @@
 
 <ng-template #suggestions>
   <div class="suggestions">
-    <kor-card 
-      *ngFor="let species of suggestedSpecies"
-      [label]="species?.name">
+    <kor-card *ngFor="let species of suggestedSpecies" [label]="species?.name">
       <!-- thumbnails -->
       <div class="thumbnails">
-        <img *ngFor="let image of species.images" [src]="image" alt=""/>
+        <img *ngFor="let image of species.images" [src]="image" alt="" />
       </div>
       <!-- footer -->
       <kor-progress-bar [value]="species?.confidence" slot="footer"></kor-progress-bar>
-      <kor-text style="width: auto" slot="footer">{{species?.confidence}}% de confiança</kor-text>
-      <kor-button label="Ver Detalhes" color="secondary" slot="footer" (click)="openWiki(species?.name);"></kor-button>
+      <kor-text style="width: auto" slot="footer">{{species?.confidence}}%</kor-text>
+      <kor-button label="Detalhes" color="secondary" slot="footer" (click)="openWiki(species?.name);"></kor-button>
     </kor-card>
   </div>
 </ng-template>

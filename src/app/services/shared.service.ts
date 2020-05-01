@@ -7,6 +7,7 @@ import { SafeUrl } from '@angular/platform-browser';
 export class SharedService {
 
   public uploadedImage: SafeUrl;
+  public appBarLabel: string;
 
   constructor() { }
 }
