@@ -30,30 +30,36 @@ export class ConfirmacaoComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const img = document.querySelector('img');
     setTimeout(() => {
-      this.tfService.predict(img).then((res) => {
-        const { values, indices } = tf.topk(res, 10);
-        const indicesArray = indices.arraySync()[0];
-        const valuesArray = values.arraySync()[0];
-        // iterate on each of top 10 suggestios
-        indicesArray.forEach((index, i) => {
-          const speciesId: string = this.birdIds[index];
-          // model suggestion data
-          const suggestionData = {
-            index,
-            confidence: Math.floor(valuesArray[i] * 100),
-            id: speciesId,
-            name: this.birdNames[speciesId],
-            images: this.wikiaves.getImagesOfSpecies(speciesId),
-          };
-          // push to suggestions array
-          this.suggestedSpecies.push(suggestionData);
-        });
-        // stop loading
-        this.loading = false;
-      });
+      this.tfService.model
+        ? this.startPrediction()
+        : this.tfService.init().then(() => this.startPrediction());
     }, 1000);
+  }
+
+  private startPrediction(): void {
+    const img = document.querySelector('img');
+    this.tfService.predict(img).then((res) => {
+      const { values, indices } = tf.topk(res, 10);
+      const indicesArray = indices.arraySync()[0];
+      const valuesArray = values.arraySync()[0];
+      // iterate on each of top 10 suggestios
+      indicesArray.forEach((index, i) => {
+        const speciesId: string = this.birdIds[index];
+        // model suggestion data
+        const suggestionData = {
+          index,
+          confidence: Math.floor(valuesArray[i] * 100),
+          id: speciesId,
+          name: this.birdNames[speciesId],
+          images: this.wikiaves.getImagesOfSpecies(speciesId),
+        };
+        // push to suggestions array
+        this.suggestedSpecies.push(suggestionData);
+      });
+      // stop loading
+      this.loading = false;
+    });
   }
 
   public openWiki(name): void {

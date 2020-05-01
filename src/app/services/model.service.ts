@@ -8,9 +8,9 @@ declare const tf;
 export class TfService {
   public model: any;
 
-  init() {
+  public init(): Promise<any> {
     const MODEL_URL = 'https://www.kor-ui.com/assets/model.json';
-    tf.loadGraphModel(MODEL_URL).then((res) => {
+    return tf.loadGraphModel(MODEL_URL).then((res) => {
       this.model = res;
       console.log('initialized model:');
       console.log(res);
@@ -25,9 +25,7 @@ export class TfService {
         .fromPixels(foto)
         .resizeNearestNeighbor([224, 224])
         .asType('float32');
-
       const fotoNormalizada = fotoTensor.div([255]).expandDims();
-
       return this.model.predict(fotoNormalizada);
     });
   }
