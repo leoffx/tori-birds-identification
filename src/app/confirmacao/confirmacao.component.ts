@@ -17,6 +17,10 @@ export class ConfirmacaoComponent implements AfterViewInit {
   public suggestedSpecies: any[] = [];
   public birdIds = require('../../assets/tf/birdIdsMap.json');
   public birdNames = require('../../assets/tf/birdNamesMap.json');
+  public selectedSpecies = {
+    name: undefined,
+    image: undefined
+  }
 
   constructor(
     public shared: SharedService,

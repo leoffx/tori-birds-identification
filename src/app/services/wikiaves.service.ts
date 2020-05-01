@@ -17,7 +17,7 @@ export class WikiavesService {
     this.http.get(`${this.baseUri}/getRegistrosJSON.php?tm=f&t=s&s=${id}&o=mp&p=1`)
       .subscribe((res: any) => {
         Object.values(res.registros.itens).forEach((item: any, i) => {
-          if (i < 5) {
+          if (i < 4) {
             images.push(item.link.replace('#', 'q'));
           }
         });

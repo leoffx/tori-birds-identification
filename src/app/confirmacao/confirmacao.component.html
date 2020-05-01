@@ -12,7 +12,7 @@
     <kor-card *ngFor="let species of suggestedSpecies" [label]="species?.name">
       <!-- thumbnails -->
       <div class="thumbnails">
-        <img *ngFor="let image of species.images" [src]="image" alt="" />
+        <img *ngFor="let image of species.images" [src]="image" alt="" (click)="selectedSpecies.name = species.name; selectedSpecies.image = image"/>
       </div>
       <!-- footer -->
       <kor-progress-bar [value]="species?.confidence" slot="footer"></kor-progress-bar>
@@ -21,3 +21,8 @@
     </kor-card>
   </div>
 </ng-template>
+
+<!-- image modal -->
+<kor-modal [label]="selectedSpecies.name" [visible]="selectedSpecies.image" (visible-changed)="!$event.target.visible ? selectedSpecies.image = undefined : ''" height="auto" width="auto">
+  <img [src]="selectedSpecies.image" height="fit-content" width="fit-content" alt=""/>
+</kor-modal>
