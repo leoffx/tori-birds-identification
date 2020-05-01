@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { SharedService } from '../services/shared.service';
 import { Router } from '@angular/router';
 
+declare const Camera;
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -18,11 +20,27 @@ export class UploadComponent implements OnInit {
     public shared: SharedService,
     public router: Router
   ) {
-    setTimeout(() => { shared.appBarLabel = "Tori" }, 0)
+    shared.appBarLabel = "Tori";
   }
 
   ngOnInit(): void {
   }
+
+  public triggerCamera(): void {
+    const self = this;
+    (<any>navigator).camera.getPicture(onSuccess, onFail, {
+      destinationType: Camera.DestinationType.DATA_URL,
+    });
+    function onSuccess(uri): void {
+      self.shared.uploadedImage = `data:image/jpeg;base64,${uri}`;
+      self.router.navigateByUrl('/confirmacao');
+    }
+    function onFail(err): void {
+      console.log(err)
+    }
+  }
+
+  private 
 
   public uploadOpen(): void {
     const input: any = document.querySelector('input#img');

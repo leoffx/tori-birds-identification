@@ -27,7 +27,7 @@ export class ConfirmacaoComponent implements AfterViewInit {
     private tfService: TfService,
     private wikiaves: WikiavesService
   ) { 
-    setTimeout(() => {shared.appBarLabel = "Sugestōes"}, 0)
+    shared.appBarLabel = "Sugestōes";
   }
 
   ngAfterViewInit(): void {
