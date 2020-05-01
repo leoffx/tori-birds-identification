@@ -7,20 +7,20 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'upload',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'upload',
-    component: UploadComponent
+    component: UploadComponent,
   },
   {
     path: 'confirmacao',
-    component: ConfirmacaoComponent
-  }
+    component: ConfirmacaoComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,7 +1,7 @@
 <!-- image -->
 <img [src]="shared.uploadedImage" alt="" />
 <!-- suggestions -->
-<ng-container *ngIf="loading then spinner else suggestions"></ng-container>
+<ng-container *ngIf="loading; then spinner; else suggestions"></ng-container>
 
 <ng-template #spinner>
   <kor-spinner label="Bela foto, xô pensar..."></kor-spinner>
@@ -12,17 +12,47 @@
     <kor-card *ngFor="let species of suggestedSpecies" [label]="species?.name">
       <!-- thumbnails -->
       <div class="thumbnails">
-        <img *ngFor="let image of species.images" [src]="image" alt="" (click)="selectedSpecies.name = species.name; selectedSpecies.image = image"/>
+        <img
+          *ngFor="let image of species.images"
+          [src]="image"
+          alt=""
+          (click)="
+            selectedSpecies.name = species.name; selectedSpecies.image = image
+          "
+        />
       </div>
       <!-- footer -->
-      <kor-progress-bar [value]="species?.confidence" slot="footer"></kor-progress-bar>
-      <kor-text style="width: auto" slot="footer">{{species?.confidence}}%</kor-text>
-      <kor-button label="Detalhes" color="secondary" slot="footer" (click)="openWiki(species?.name);"></kor-button>
+      <kor-progress-bar
+        [value]="species?.confidence"
+        slot="footer"
+      ></kor-progress-bar>
+      <kor-text style="width: auto;" slot="footer"
+        >{{ species?.confidence }}%</kor-text
+      >
+      <kor-button
+        label="Detalhes"
+        color="secondary"
+        slot="footer"
+        (click)="openWiki(species?.name)"
+      ></kor-button>
     </kor-card>
   </div>
 </ng-template>
 
 <!-- image modal -->
-<kor-modal [label]="selectedSpecies.name" [visible]="selectedSpecies.image" (visible-changed)="!$event.target.visible ? selectedSpecies.image = undefined : ''" height="auto" width="auto">
-  <img [src]="selectedSpecies.image" height="fit-content" width="fit-content" alt=""/>
+<kor-modal
+  [label]="selectedSpecies.name"
+  [visible]="selectedSpecies.image"
+  (visible-changed)="
+    !$event.target.visible ? (selectedSpecies.image = undefined) : ''
+  "
+  height="auto"
+  width="auto"
+>
+  <img
+    [src]="selectedSpecies.image"
+    height="fit-content"
+    width="fit-content"
+    alt=""
+  />
 </kor-modal>

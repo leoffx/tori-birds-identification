@@ -29,10 +29,10 @@
       + kor-card {
         margin-top: 8px;
       }
-      > kor-text[slot="footer"] {
+      > kor-text[slot='footer'] {
         flex: 1;
       }
-      > kor-progress-bar[slot="footer"] {
+      > kor-progress-bar[slot='footer'] {
         max-width: 80px;
         margin: 0;
       }
@@ -51,8 +51,8 @@
           flex: 1;
           object-fit: cover;
           cursor: pointer;
-          opacity: .8;
-          transition: .1s all ease-in-out;
+          opacity: 0.8;
+          transition: 0.1s all ease-in-out;
           &:hover {
             opacity: 1;
           }

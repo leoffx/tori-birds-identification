@@ -1,6 +1,12 @@
 <kor-page theme="dark">
   <kor-app-bar slot="top" mobile [label]="shared.appBarLabel">
-    <kor-icon icon="keyboard_arrow_left" button slot="left" *ngIf="router.url !== '/upload'" (click)="router.navigateByUrl('/upload')"></kor-icon>
+    <kor-icon
+      icon="keyboard_arrow_left"
+      button
+      slot="left"
+      *ngIf="router.url !== '/upload'"
+      (click)="router.navigateByUrl('/upload')"
+    ></kor-icon>
   </kor-app-bar>
   <router-outlet></router-outlet>
 </kor-page>

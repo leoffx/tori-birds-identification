@@ -9,32 +9,31 @@ declare const require;
 @Component({
   selector: 'app-confirmacao',
   templateUrl: './confirmacao.component.html',
-  styleUrls: ['./confirmacao.component.scss']
+  styleUrls: ['./confirmacao.component.scss'],
 })
 export class ConfirmacaoComponent implements AfterViewInit {
-
   public loading = true;
   public suggestedSpecies: any[] = [];
   public birdIds = require('../../assets/tf/birdIdsMap.json');
   public birdNames = require('../../assets/tf/birdNamesMap.json');
   public selectedSpecies = {
     name: undefined,
-    image: undefined
-  }
+    image: undefined,
+  };
 
   constructor(
     public shared: SharedService,
     private tfService: TfService,
     private wikiaves: WikiavesService
-  ) { 
-    shared.appBarLabel = "Sugestōes";
+  ) {
+    shared.appBarLabel = 'Sugestōes';
   }
 
   ngAfterViewInit(): void {
     const img = document.querySelector('img');
     setTimeout(() => {
-      this.tfService.predict(img).then(res => {
-        const {values, indices} = tf.topk(res, 10);
+      this.tfService.predict(img).then((res) => {
+        const { values, indices } = tf.topk(res, 10);
         const indicesArray = indices.arraySync()[0];
         const valuesArray = values.arraySync()[0];
         // iterate on each of top 10 suggestios
@@ -43,22 +42,21 @@ export class ConfirmacaoComponent implements AfterViewInit {
           // model suggestion data
           const suggestionData = {
             index,
-            confidence: Math.floor((valuesArray[i] * 100)),
+            confidence: Math.floor(valuesArray[i] * 100),
             id: speciesId,
             name: this.birdNames[speciesId],
-            images: this.wikiaves.getImagesOfSpecies(speciesId)
+            images: this.wikiaves.getImagesOfSpecies(speciesId),
           };
           // push to suggestions array
           this.suggestedSpecies.push(suggestionData);
         });
         // stop loading
         this.loading = false;
-      })
+      });
     }, 1000);
   }
 
   public openWiki(name): void {
-    window.open(`https://www.wikiaves.com.br/wiki/${name}`)
+    window.open(`https://www.wikiaves.com.br/wiki/${name}`);
   }
-
 }

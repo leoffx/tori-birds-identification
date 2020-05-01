@@ -8,10 +8,9 @@ declare const Camera;
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent implements OnInit {
-
   public showLinkModal: boolean;
   public photoLink: string;
 
@@ -20,11 +19,10 @@ export class UploadComponent implements OnInit {
     public shared: SharedService,
     public router: Router
   ) {
-    shared.appBarLabel = "Tori";
+    shared.appBarLabel = 'Tori';
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public triggerCamera(): void {
     const self = this;
@@ -36,11 +34,11 @@ export class UploadComponent implements OnInit {
       self.router.navigateByUrl('/confirmacao');
     }
     function onFail(err): void {
-      console.log(err)
+      console.log(err);
     }
   }
 
-  private 
+  private;
 
   public uploadOpen(): void {
     const input: any = document.querySelector('input#img');
@@ -48,7 +46,9 @@ export class UploadComponent implements OnInit {
   }
 
   public setUploadedImage(input): void {
-    this.shared.uploadedImage = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(input.files[0]));
+    this.shared.uploadedImage = this.sanitizer.bypassSecurityTrustUrl(
+      URL.createObjectURL(input.files[0])
+    );
     this.router.navigateByUrl('/confirmacao');
   }
 
@@ -56,5 +56,4 @@ export class UploadComponent implements OnInit {
     this.shared.uploadedImage = url;
     this.router.navigateByUrl('/confirmacao');
   }
-
 }

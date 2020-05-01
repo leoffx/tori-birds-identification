@@ -1,15 +1,47 @@
 <!-- empty state -->
-<kor-empty-state icon="photo" label="Escolha uma foto de ave para ser reconhecida">
+<kor-empty-state
+  icon="photo"
+  label="Escolha uma foto de ave para ser reconhecida"
+>
   <kor-button slot="footer" icon="backup" (click)="uploadOpen()"></kor-button>
-  <kor-button slot="footer" icon="photo_camera" (click)="triggerCamera()"></kor-button>
-  <kor-button slot="footer" icon="link" (click)="showLinkModal = true"></kor-button>
+  <kor-button
+    slot="footer"
+    icon="photo_camera"
+    (click)="triggerCamera()"
+  ></kor-button>
+  <kor-button
+    slot="footer"
+    icon="link"
+    (click)="showLinkModal = true"
+  ></kor-button>
 </kor-empty-state>
 
 <!-- link modal -->
-<kor-modal label="Envie o link de uma foto" [visible]="showLinkModal" (visible-changed)="showLinkModal = $event.target.visible" width="calc(100% - 32px)" height="auto">
-  <kor-input label="Link da foto" (value-changed)="photoLink = $event.target.value" [value]="photoLink" style="margin: 0"></kor-input>
-  <kor-button slot="footer" label="Enviar" [disabled]="!photoLink" (click)="setUploadedUrl(photoLink)"></kor-button>
+<kor-modal
+  label="Envie o link de uma foto"
+  [visible]="showLinkModal"
+  (visible-changed)="showLinkModal = $event.target.visible"
+  width="calc(100% - 32px)"
+  height="auto"
+>
+  <kor-input
+    label="Link da foto"
+    (value-changed)="photoLink = $event.target.value"
+    [value]="photoLink"
+    style="margin: 0;"
+  ></kor-input>
+  <kor-button
+    slot="footer"
+    label="Enviar"
+    [disabled]="!photoLink"
+    (click)="setUploadedUrl(photoLink)"
+  ></kor-button>
 </kor-modal>
 
 <!-- hidden file input -->
-<input type="file" id="img" accept="image/*" (change)="setUploadedImage($event.target)">
+<input
+  type="file"
+  id="img"
+  accept="image/*"
+  (change)="setUploadedImage($event.target)"
+/>
