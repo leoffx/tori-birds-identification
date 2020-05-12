@@ -14,8 +14,7 @@ declare const require;
 export class ConfirmacaoComponent implements AfterViewInit {
   public loading = true;
   public suggestedSpecies: any[] = [];
-  public birdIds = require('../../assets/tf/birdIdsMap.json');
-  public birdNames = require('../../assets/tf/birdNamesMap.json');
+  public birdDictionary = require('../../assets/tf/birdDictionary.json');
   public selectedSpecies = {
     name: undefined,
     image: undefined,
@@ -45,14 +44,14 @@ export class ConfirmacaoComponent implements AfterViewInit {
       const valuesArray = values.arraySync()[0];
       // iterate on each of top 10 suggestios
       indicesArray.forEach((index, i) => {
-        const speciesId: string = this.birdIds[index];
+        const bird: any = this.birdDictionary[index];
         // model suggestion data
         const suggestionData = {
           index,
           confidence: Math.floor(valuesArray[i] * 100),
-          id: speciesId,
-          name: this.birdNames[speciesId],
-          images: this.wikiaves.getImagesOfSpecies(speciesId),
+          id: bird.id,
+          name: bird.name,
+          images: this.wikiaves.getImagesOfSpecies(bird.id)
         };
         // push to suggestions array
         this.suggestedSpecies.push(suggestionData);
