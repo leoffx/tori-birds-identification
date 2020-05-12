@@ -19,7 +19,7 @@ export class UploadComponent implements OnInit {
     public shared: SharedService,
     public router: Router
   ) {
-    shared.appBarLabel = 'Tori';
+    shared.appBarLabel = 'Harpia';
   }
 
   ngOnInit(): void {}

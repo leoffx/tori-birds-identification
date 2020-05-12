@@ -10,6 +10,9 @@
 <ng-template #suggestions>
   <div class="suggestions">
     <kor-card *ngFor="let species of suggestedSpecies" [label]="species?.name">
+      <!-- age, sex -->
+      <kor-tag slot="functions" [label]="species.age == 'A' ? 'Adulto' : 'Jovem'"></kor-tag>
+      <kor-tag slot="functions" *ngIf="species.sex" [label]="species.sex == 'M' ? 'Macho' : 'Fêmea'"></kor-tag>
       <!-- thumbnails -->
       <div class="thumbnails">
         <img

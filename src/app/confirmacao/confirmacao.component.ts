@@ -51,6 +51,8 @@ export class ConfirmacaoComponent implements AfterViewInit {
           confidence: Math.floor(valuesArray[i] * 100),
           id: bird.id,
           name: bird.name,
+          age: bird.age,
+          sex: bird.sex,
           images: this.wikiaves.getImagesOfSpecies(bird.id)
         };
         // push to suggestions array

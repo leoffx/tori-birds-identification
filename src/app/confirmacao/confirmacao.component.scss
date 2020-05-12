@@ -29,6 +29,9 @@
       + kor-card {
         margin-top: 8px;
       }
+      > kor-tag[slot='functions'] {
+        padding: 0 4px;
+      }
       > kor-text[slot='footer'] {
         flex: 1;
       }
