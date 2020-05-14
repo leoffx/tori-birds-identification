@@ -9,7 +9,14 @@
 
 <ng-template #suggestions>
   <div class="suggestions">
-    <kor-card *ngFor="let species of suggestedSpecies" [label]="species?.name">
+    <kor-card *ngFor="let species of suggestedSpecies">
+      <kor-text 
+        size="header-1" 
+        color="rgb(var(--accent-1))" 
+        slot="header"
+        (click)="openWiki(species?.name)">
+        {{species?.name}}
+      </kor-text>
       <!-- age, sex -->
       <kor-tag slot="functions" [label]="species.age == 'A' ? 'Adulto' : 'Jovem'"></kor-tag>
       <kor-tag slot="functions" *ngIf="species.sex" [label]="species.sex == 'M' ? 'Macho' : 'Fêmea'"></kor-tag>
@@ -32,13 +39,9 @@
       <kor-text style="width: auto;" slot="footer"
         >{{ species?.confidence }}%</kor-text
       >
-      <kor-button
-        label="Detalhes"
-        color="secondary"
-        slot="footer"
-        (click)="openWiki(species?.name)"
-      ></kor-button>
     </kor-card>
+    <!-- empty state -->
+    <kor-empty-state *ngIf="suggestedSpecies.length < 1" label="Nenhuma sugestão encontrada" icon="thumb_down"></kor-empty-state>
   </div>
 </ng-template>
 

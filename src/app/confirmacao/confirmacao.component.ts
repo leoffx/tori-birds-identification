@@ -55,15 +55,17 @@ export class ConfirmacaoComponent implements AfterViewInit {
           sex: bird.sex,
           images: this.wikiaves.getImagesOfSpecies(bird.id)
         };
-        // push to suggestions array
-        this.suggestedSpecies.push(suggestionData);
+        // push to suggestions array (if more than 10% confidence)
+        if (suggestionData.confidence > 10) {
+          this.suggestedSpecies.push(suggestionData);
+        }
       });
       // stop loading
       this.loading = false;
     });
   }
 
-  public openWiki(name): void {
+  public openWiki(name: string): void {
     window.open(`https://www.wikiaves.com.br/wiki/${name}`);
   }
 }
