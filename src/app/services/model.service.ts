@@ -9,7 +9,7 @@ export class TfService {
   public model: any;
 
   public init(): Promise<any> {
-    const MODEL_URL = 'http://www.kor-ui.com/samples/harpia/assets/tf/model.json';
+    const MODEL_URL = '../../assets/model.json';
     return tf.loadGraphModel(MODEL_URL).then((res) => {
       this.model = res;
       console.log('initialized model:');

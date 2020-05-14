@@ -14,7 +14,7 @@ declare const require;
 export class ConfirmacaoComponent implements AfterViewInit {
   public loading = true;
   public suggestedSpecies: any[] = [];
-  public birdDictionary = require('../../assets/tf/birdDictionary.json');
+  public birdDictionary = require('../../assets/birdDictionary.json');
   public selectedSpecies = {
     name: undefined,
     image: undefined,
